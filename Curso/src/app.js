@@ -1,8 +1,19 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+var mongoose = require('mongoose');
+
+// connecta ao banco
+var uri = 'mongodb+srv://marcilio:marcilio@cluster0-m8hv4.azure.mongodb.net/nodestr?retryWrites=true';
+mongoose.connect(uri, { useNewUrlParser: true })
+    .catch((error) => {
+        console.log(error);
+    });;
+
+// Carregando Models
+const Product = require('./models/product');
 
 // Carregar as Rotas
 const indexRoute = require("./routes/index-route");
