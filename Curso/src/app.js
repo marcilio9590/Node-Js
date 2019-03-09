@@ -2,12 +2,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const config = require('./config');
 const app = express();
 var mongoose = require('mongoose');
 
 // connecta ao banco
-var uri = 'mongodb+srv://marcilio:marcilio@cluster0-m8hv4.azure.mongodb.net/nodestr?retryWrites=true';
-mongoose.connect(uri, { useNewUrlParser: true })
+mongoose.connect(config.connectionString, { useNewUrlParser: true })
     .catch((error) => {
         console.log(error);
     });;
