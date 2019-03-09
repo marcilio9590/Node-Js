@@ -22,6 +22,15 @@ exports.post = async (req, res, next) => {
     }
 }
 
+exports.get = async (req, res, next) => {
+    try {
+        var data = await repository.get();
+        res.status(200).send(data);
+    } catch (e) {
+        tratarError(res, e);
+    }
+}
+
 function montarRetorno(message) {
     return {
         message: message

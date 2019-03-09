@@ -8,4 +8,7 @@ exports.create = async (data) => {
     await customer.save();
 }
 
+exports.get = async () => {
+    return await Customer.find();
+}
 
