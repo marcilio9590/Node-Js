@@ -14,6 +14,39 @@ exports.get = (req, res, next) => {
     });
 }
 
+exports.getBySlug = (req, res, next) => {
+    Product.findOne({
+        slug: req.params.slug,
+        active: true
+    }, 'title description price slug tags').then(data => {
+        res.status(200).send(data);
+    }).catch(e => {
+        res.status(400).send(e);
+    });
+}
+
+exports.getById = (req, res, next) => {
+    Product.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.status(200).send(data);
+    }).catch(e => {
+        res.status(400).send(e);
+    });
+}
+
+exports.getByTag = (req, res, next) => {
+    Product.find({
+        tags: req.params.tag,
+        active: true
+    }, 'title description price slug tags')
+        .then(data => {
+            res.status(200).send(data);
+        }).catch(e => {
+            res.status(400).send(e);
+        });
+}
+
 exports.post = (req, res, next) => {
     let contract = new ValidationContract();
     contract.hasMinLen(req.body.title, 3, 'O titulo deve ter no mínimo 3 caracteres.');
@@ -71,36 +104,3 @@ exports.delete = (req, res, next) => {
         });
     });
 };
-
-exports.getBySlug = (req, res, next) => {
-    Product.findOne({
-        slug: req.params.slug,
-        active: true
-    }, 'title description price slug tags').then(data => {
-        res.status(200).send(data);
-    }).catch(e => {
-        res.status(400).send(e);
-    });
-}
-
-exports.getById = (req, res, next) => {
-    Product.findOne({
-        _id: req.params.id
-    }).then(data => {
-        res.status(200).send(data);
-    }).catch(e => {
-        res.status(400).send(e);
-    });
-}
-
-exports.getByTag = (req, res, next) => {
-    Product.find({
-        tags: req.params.tag,
-        active: true
-    }, 'title description price slug tags')
-        .then(data => {
-            res.status(200).send(data);
-        }).catch(e => {
-            res.status(400).send(e);
-        });
-}
