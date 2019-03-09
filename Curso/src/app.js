@@ -15,6 +15,7 @@ mongoose.connect(uri, { useNewUrlParser: true })
 // Carregando Models
 const Product = require('./models/product');
 const Customer = require('./models/customer');
+const Order = require('./models/order');
 
 // Carregar as Rotas
 const indexRoute = require("./routes/index-route");
