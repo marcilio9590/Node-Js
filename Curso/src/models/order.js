@@ -21,7 +21,7 @@ const schema = new Schema({
         type: String,
         required: true,
         enum: ['created', 'done'],
-        dafault: 'created'
+        default: 'created'
     },
     items: [
         {
@@ -29,10 +29,6 @@ const schema = new Schema({
                 type: Number,
                 required: true,
                 dafault: 1
-            },
-            price: {
-                type: Number,
-                required: true
             },
             product: {
                 type: mongoose.Schema.Types.ObjectId,
