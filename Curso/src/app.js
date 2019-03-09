@@ -7,11 +7,11 @@ const app = express();
 var mongoose = require('mongoose');
 
 // connecta ao banco
+mongoose.set('useCreateIndex', true);
 mongoose.connect(config.connectionString, { useNewUrlParser: true })
     .catch((error) => {
         console.log(error);
     });;
-
 // Carregando Models
 const Product = require('./models/product');
 const Customer = require('./models/customer');
