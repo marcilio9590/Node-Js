@@ -23,11 +23,12 @@ exports.post = async (req, res, next) => {
             roles: ["user"],
             password: md5(req.body.password + global.SALT_KEY)
         });
-        emailService.send(
-            req.body.email,
-            'Bem Vindo a Intelligence Solutions',
-            global.EMAIL_TMPL.replace('{0}', req.body.name)
-        );
+		//Comentado pois a chave do sendgrid nao pode ser comitada no git
+      //  emailService.send(
+      //      req.body.email,
+       //     'Bem Vindo a Intelligence Solutions',
+      //      global.EMAIL_TMPL.replace('{0}', req.body.name)
+       // );
         res.status(201).send(
             montarRetorno("Cliente Cadastrado com Sucesso.")
         );
